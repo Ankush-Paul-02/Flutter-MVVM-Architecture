@@ -1,22 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mvvm/view_model/auth_view_model.dart';
+import 'package:flutter_mvvm/res/colors.dart';
+import 'package:flutter_mvvm/res/components/round_button.dart';
+import 'package:flutter_mvvm/utils/routes/routes_name.dart';
+import 'package:flutter_mvvm/utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../model/auth_view_model.dart';
-import '../res/colors.dart';
-import '../res/components/round_button.dart';
-import '../utils/routes/routes_name.dart';
-import '../utils/utils.dart';
-
-class SignUpView extends StatefulWidget {
-  const SignUpView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<SignUpView> createState() => _SignUpViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _SignUpViewState extends State<SignUpView> {
+class _LoginViewState extends State<LoginView> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -43,7 +42,7 @@ class _SignUpViewState extends State<SignUpView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Vx.black,
-        title: 'Sign up'.text.bold.color(AppColors.cyan).make().centered(),
+        title: 'Login'.text.bold.color(AppColors.cyan).make().centered(),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -99,8 +98,8 @@ class _SignUpViewState extends State<SignUpView> {
           ),
           40.heightBox,
           RoundButton(
-            title: 'Signup',
-            loading: authViewModel.isSignupLoading,
+            title: 'Login',
+            loading: authViewModel.isLoading,
             onPress: () {
               if (emailController.text.isEmpty ||
                   passwordController.text.isEmpty) {
@@ -110,7 +109,7 @@ class _SignUpViewState extends State<SignUpView> {
                   'email': emailController.text.trim().toString(),
                   'password': passwordController.text.trim().toString(),
                 };
-                authViewModel.signupApi(data, context);
+                authViewModel.loginApi(data, context);
                 if (kDebugMode) {
                   print('Api hit');
                 }
@@ -118,10 +117,10 @@ class _SignUpViewState extends State<SignUpView> {
             },
           ),
           40.heightBox,
-          'Already have an account, Login'.text.make().onInkTap(
+          'Do not have an account, Sign up'.text.make().onInkTap(
                 () => Navigator.pushNamed(
                   context,
-                  RoutesName.login,
+                  RoutesName.signup,
                 ),
               ),
         ],
