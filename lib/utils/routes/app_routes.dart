@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm/utils/routes/routes_name.dart';
-import 'package:flutter_mvvm/view/home_view.dart';
-import 'package:flutter_mvvm/view/login_view.dart';
-import 'package:flutter_mvvm/view/signup_view.dart';
+import 'package:flutter_mvvm/view_model/home_view.dart';
+import 'package:flutter_mvvm/view_model/login_view.dart';
+import 'package:flutter_mvvm/view_model/signup_view.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AppRoutes {
